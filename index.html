@@ -1,0 +1,57 @@
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    
+    </script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+
+
+</head>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+      var socket = io.connect();
+      v//ar name = prompt("Please enter your name", "Harry Potter");
+      socket.emit('join', "name");
+
+      socket.on('message', function(data){             
+            $('#messages').text(data);
+      });     
+
+      socket.on('messages', function(data){                            
+            $('p').last().append('<p>' + data + "</p> ");
+      });
+
+</script>
+
+<body>
+	<script>
+    var a = function(e){        
+              var message = $('#inputtext').val();
+              socket.emit('messages', message);
+              $('#inputtext').val(""); 
+              
+      };
+      
+    </script>
+	<div class="container">
+		<div class="jumbotron">
+			<p id="messages"></p>
+		</div>
+		<div class=" jumbotron col-lg-13 ">
+			<div class="input-group input-group-lg">
+				<input type="text" style="border-radius:6px" class="form-control" placeholder="send a message" name="message" id="inputtext">
+				<span class="input-group-btn input-group-lg">
+				<button type="submit"  style="border-radius:6px ;  margin-left:10px" class="form-control" id="submitbutton" onclick="a();"></button>
+       </span>
+			</div>
+		</div>		
+		</div>
+	</div>
+	</div>
+
+
+</body>
+
+</html>
