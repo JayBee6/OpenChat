@@ -12,8 +12,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
       var socket = io.connect();
-      v//ar name = prompt("Please enter your name", "Harry Potter");
-      socket.emit('join', "name");
+      var name = prompt("Please enter your name", "Harry Potter");
+      socket.emit('join', name);
 
       socket.on('message', function(data){             
             $('#messages').text(data);
