@@ -5,17 +5,19 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', function(client){    
     
     client.on('join', function(name){        
         client.name = name;
-        client.emit("message", name + " joined!");
+        client.emit("message", name + " has joined the chat.");
     });
 
     client.on('messages', function(data){
-            client.broadcast.emit("messages", client.name + " : " +  data);            
-            client.emit('messages', client.name + " : " +  data);
+            client.broadcast.emit("messages", {name :client.name, message: data});            
+            client.emit('mymessages', {name :client.name, message: data});
     });
     
 });
