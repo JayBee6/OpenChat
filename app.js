@@ -13,6 +13,7 @@ io.on('connection', function(client){
     client.on('join', function(name){        
         client.name = name;
         client.emit("message", name + " has joined the chat.");
+         client.broadcast.emit("message", name + " has joined the chat.");
     });
 
     client.on('messages', function(data){
