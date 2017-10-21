@@ -1,2 +1,2 @@
 # OpenChat
-Open Source Chat application using node.js, socket io, angular, mongoDb and react.js
+Open Source Chat application using node.js, socket io, angular, mongoDb 
